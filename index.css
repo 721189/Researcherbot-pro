@@ -1,0 +1,313 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─── */
+:root {
+  --color-primary: 99 102 241;
+  --color-accent: 6 182 212;
+  --color-surface-900: 15 23 42;
+  --color-surface-800: 30 41 59;
+  --color-surface-700: 51 65 85;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: 12px;
+}
+
+/* ─── Glassmorphism ─── */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-hover {
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .glass-hover:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ─── Gradient Text ─── */
+  .gradient-text {
+    background: linear-gradient(135deg, #818cf8, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #f472b6, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Gradient Backgrounds ─── */
+  .gradient-primary {
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+  }
+
+  .gradient-primary-hover {
+    background: linear-gradient(135deg, #4f46e5, #0891b2);
+  }
+
+  /* ─── Status Colors ─── */
+  .status-pending {
+    @apply bg-amber-500/10 text-amber-400 border-amber-500/30;
+  }
+
+  .status-running {
+    @apply bg-blue-500/10 text-blue-400 border-blue-500/30;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .status-searching {
+    @apply bg-indigo-500/10 text-indigo-400 border-indigo-500/30;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .status-extracting {
+    @apply bg-violet-500/10 text-violet-400 border-violet-500/30;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .status-synthesizing {
+    @apply bg-cyan-500/10 text-cyan-400 border-cyan-500/30;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .status-completed {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/30;
+  }
+
+  .status-success {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/30;
+  }
+
+  .status-failed {
+    @apply bg-red-500/10 text-red-400 border-red-500/30;
+  }
+
+  .status-partial {
+    @apply bg-orange-500/10 text-orange-400 border-orange-500/30;
+  }
+
+  .status-partial_success {
+    @apply bg-orange-500/10 text-orange-400 border-orange-500/30;
+  }
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(99, 102, 241, 0.4);
+  color: #fff;
+}
+
+/* ─── Focus Rings ─── */
+*:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Markdown Content Styling ─── */
+.markdown-content h1 {
+  @apply text-2xl font-bold text-gray-100 mb-4 mt-6 first:mt-0;
+}
+
+.markdown-content h2 {
+  @apply text-xl font-semibold text-gray-100 mb-3 mt-5;
+}
+
+.markdown-content h3 {
+  @apply text-lg font-semibold text-gray-200 mb-2 mt-4;
+}
+
+.markdown-content p {
+  @apply text-gray-300 leading-relaxed mb-4;
+}
+
+.markdown-content ul {
+  @apply list-disc list-inside text-gray-300 mb-4 space-y-1;
+}
+
+.markdown-content ol {
+  @apply list-decimal list-inside text-gray-300 mb-4 space-y-1;
+}
+
+.markdown-content li {
+  @apply leading-relaxed;
+}
+
+.markdown-content a {
+  @apply text-primary-400 hover:text-primary-300 underline underline-offset-2 transition-colors;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-primary-500/30 pl-4 italic text-gray-400 my-4;
+}
+
+.markdown-content code {
+  @apply bg-surface-800 text-accent-300 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+.markdown-content pre {
+  @apply bg-surface-900 border border-surface-700 rounded-lg p-4 overflow-x-auto my-4;
+}
+
+.markdown-content pre code {
+  @apply bg-transparent px-0 py-0;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse my-4;
+}
+
+.markdown-content th {
+  @apply bg-surface-800 text-gray-200 px-4 py-2 text-left text-sm font-semibold border border-surface-700;
+}
+
+.markdown-content td {
+  @apply px-4 py-2 text-gray-300 text-sm border border-surface-700;
+}
+
+.markdown-content hr {
+  @apply border-surface-700 my-6;
+}
+
+/* ─── Transition Utilities ─── */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
